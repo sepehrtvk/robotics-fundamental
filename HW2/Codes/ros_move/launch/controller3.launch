@@ -1,0 +1,20 @@
+<launch>
+
+    <node pkg="ros_move" type="controller3.py" name="controller" output="screen">
+        <param name="linear_speed" value="1.2" />
+        <param name="angular_speed" value="-0.2"/>
+        <param name="goal_angle" value="90"/>
+        <param name="epsilon" value="0.001"/>        
+    </node>
+
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_empty_world.launch">
+        <arg name="x_pos" value="0"/>
+        <arg name="y_pos" value="0"/>
+        <arg name="z_pos" value="0"/>
+    </include>
+
+    <node pkg="ros_move" type="monitor.py" name="monitor"></node>
+
+    <include file="$(find turtlebot_rviz_launchers)/launch/view_robot.launch"/>
+
+</launch>
